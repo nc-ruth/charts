@@ -22,7 +22,16 @@ spec:
         {{- if .Values.podLabels }}
         {{- include "common.tplvalues.render" (dict "value" .Values.podLabels "context" $) | nindent 8 }}
         {{- end }}
+        {{- if .Values.provisioning.podLabels }}
+        {{- include "common.tplvalues.render" ( dict "value" .Values.podAnnotations "context" $) | nindent 8 }}
+        {{- end }}
       annotations:
+        {{- if .Values.podAnnotations }}
+        {{- include "common.tplvalues.render" (dict "value" .Values.podAnnotations "context" $) | nindent 8 }}
+        {{- end }}
+        {{- if .Values.provisioning.podAnnotations }}
+        {{- include "common.tplvalues.render" ( dict "value" .Values.podAnnotations "context" $) | nindent 8 }}
+        {{- end }}
     spec:
       {{- include "kafka.imagePullSecrets" . | nindent 6 }}
       {{- if .Values.provisioning.schedulerName }}
